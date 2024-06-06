@@ -12,9 +12,9 @@ class VerifyCsrfToken extends Middleware
         "/api/signup",
         "/api/sesiones/insert",
         "/api/estadistica/update",
-        "/api/update",
-        "/api/logout",
-        "/api/delete"
+        "/api/user/update",
+        "/api/user/logout",
+        "/api/user/delete"
     ];
 
 }

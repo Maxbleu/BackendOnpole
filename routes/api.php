@@ -32,6 +32,9 @@ Route::get('csrf-token', function () {
 Route::middleware(['auth:sanctum'])->group(function(){
 
     Route::get('/user', [UserController::class, "getUser"]);
+    Route::put("/user/update", [UserController::class, "update"]);
+    Route::post("/user/logout", [AuthenticatedSessionController::class, "destroy"]);
+    Route::post("/user/delete", [UserController::class, "destroy"]);
 
     Route::get("/users/sesiones/{user_id}", [UserController::class, "getUserSesions"]);
     Route::get("/users/sesiones/{user_id}/latest", [UserController::class, "getUserLatestSesion"]);
@@ -43,9 +46,5 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get("/estadistica/global", [EstadisticaController::class, "getGlobalRank"]);
     Route::put("/estadistica/update", [EstadisticaController::class, "update"]);
     Route::get("/users/estadistica/{user_id}", [UserController::class, "getUserStadistics"]);
-
-    Route::put("update", [UserController::class, "update"]);
-    Route::post("logout", [AuthenticatedSessionController::class, "destroy"]);
-    Route::post("delete", [UserController::class, "destroy"]);
 
 });
