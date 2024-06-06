@@ -8,7 +8,7 @@ class VerifyCsrfToken extends Middleware
 {
 
     protected $except = [
-        "https://fronted-onpole.vercel.app/login",
+        "/api/login",
 
     ];
 
