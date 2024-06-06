@@ -1,17 +1,14 @@
 <?php
 
 use App\Http\Controllers\Api\CircuitoController;
-use App\Http\Controllers\Api\CocheController;
 use App\Http\Controllers\Api\EstadisticaController;
 use App\Http\Controllers\Api\MarcaController;
 use App\Http\Controllers\Api\SesionController;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\VueltaController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Resources\CocheResource;
 use App\Models\Coche;
-use App\Models\Estadistica;
 use Illuminate\Support\Facades\Route;
 
 Route::get("coches", function(){
