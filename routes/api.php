@@ -45,7 +45,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get("/users/estadistica/{user_id}", [UserController::class, "getUserStadistics"]);
 
     Route::put("update", [UserController::class, "update"]);
-    Route::post("delete account", [UserController::class, "destroy"]);
     Route::post("logout", [AuthenticatedSessionController::class, "destroy"]);
     Route::post("delete", [UserController::class, "destroy"]);
 
