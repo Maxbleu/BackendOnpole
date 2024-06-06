@@ -28,6 +28,10 @@ Route::get("marcas/{id}", [MarcaController::class, "getMarcaById"]);
 Route::post("login", [AuthenticatedSessionController::class, "store"]);
 Route::post("signup", [RegisteredUserController::class, "store"]);
 
+Route::get('csrf-token', function () {
+    return response()->json(['csrfToken' => csrf_token()]);
+})->middleware("web");
+
 Route::middleware(['auth:sanctum'])->group(function(){
 
     Route::get('/user', [UserController::class, "getUser"]);
