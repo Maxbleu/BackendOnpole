@@ -10,22 +10,15 @@ use App\Models\User;
 class RegisteredUserController extends Controller
 {
 
-    public function store( $request)
+    public function store(SignUpRequest $request)
     {
 
-        $validatedData = $request->validate([
-            'name' => ['required','unique:users,name'],
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-            'confirmPassword' => ['required'],
-        ]);
-
         $user = User::create([
-            'name' => $validatedData["name"],
-            'email' => $validatedData["email"],
-            "password" => bcrypt($validatedData["password"]),
-            "acronimo" => strtoupper(substr($validatedData["name"],0,3)),
-            "pais" => $validatedData["pais"]
+            'name' => $request["name"],
+            'email' => $request["email"],
+            "password" => bcrypt($request["password"]),
+            "acronimo" => strtoupper(substr($request["name"],0,3)),
+            "pais" => $request["pais"]
         ]);
 
         Estadistica::create([
