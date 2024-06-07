@@ -10,10 +10,15 @@ use App\Models\User;
 class RegisteredUserController extends Controller
 {
 
-    public function store(SignUpRequest $request)
+    public function store( $request)
     {
 
-        $validatedData = $request->validated();
+        $validatedData = $request->validate([
+            'name' => ['required','unique:users,name'],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+            'confirmPassword' => ['required'],
+        ]);
 
         $user = User::create([
             'name' => $validatedData["name"],
@@ -34,43 +39,6 @@ class RegisteredUserController extends Controller
             'user' => $user,
             "token" => $token
         ], 201);
-
-        /*$credentials = $request->validate([
-            'name' => ['required','unique:users,name'],
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-            'confirmPassword' => ['required'],
-        ]);
-
-        if($credentials["password"] !== $credentials["confirmPassword"]){
-            return response()->json([
-                "message" => "Las contraseñas no coinciden"
-            ]);
-        }
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            "password" => bcrypt($request->password),
-            "acronimo" => strtoupper(substr($request->name,0,3)),
-            "pais" => $request->pais
-        ]);
-
-        Estadistica::create([
-            "user_id" => $user->id
-        ]);
-
-        $token = $user->createToken("main")->plainTextToken;
-
-        event(new Registered($user));
-
-        Auth::login($user, true);
-
-        return response()->json([
-            "message" => "Usuario registrado correctamente",
-            "user" => $user,
-            "token" => $token
-        ]);*/
 
     }
 }
