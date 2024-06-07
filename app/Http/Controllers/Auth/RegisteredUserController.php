@@ -3,19 +3,39 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SignUpRequest;
 use App\Models\Estadistica;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class RegisteredUserController extends Controller
 {
 
-    public function store(Request $request)
+    public function store(SignUpRequest $request)
     {
 
-        $credentials = $request->validate([
+        $validatedData = $request->validated();
+
+        $user = User::create([
+            'name' => $validatedData["name"],
+            'email' => $validatedData["email"],
+            "password" => bcrypt($validatedData["password"]),
+            "acronimo" => strtoupper(substr($validatedData["name"],0,3)),
+            "pais" => $validatedData["pais"]
+        ]);
+
+        Estadistica::create([
+            "user_id" => $user->id
+        ]);
+
+        $token = $user->createToken("main")->plainTextToken;
+
+        return response()->json([
+            'message' => 'Usuario registrado con éxito',
+            'user' => $user,
+            "token" => $token
+        ], 201);
+
+        /*$credentials = $request->validate([
             'name' => ['required','unique:users,name'],
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -50,7 +70,7 @@ class RegisteredUserController extends Controller
             "message" => "Usuario registrado correctamente",
             "user" => $user,
             "token" => $token
-        ]);
+        ]);*/
 
     }
 }
