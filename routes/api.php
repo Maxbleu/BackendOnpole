@@ -38,6 +38,8 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
     Route::get("/users/sesiones/{user_id}", [UserController::class, "getUserSesions"]);
     Route::get("/users/sesiones/{user_id}/latest", [UserController::class, "getUserLatestSesion"]);
+    Route::get("/users/{user_id}/sesiones/getLapsMonthly", [UserController::class, "getAnalyzedLapsMonthlyByUser"]);
+    Route::get("/users/estadistica/{user_id}", [UserController::class, "getUserStadistics"]);
 
     Route::get("/sesiones/{sesion_id}", [SesionController::class,"getSesionId"]);
     Route::post("/sesiones/insert", [SesionController::class, "store"]);
@@ -45,6 +47,5 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
     Route::get("/estadistica/global", [EstadisticaController::class, "getGlobalRank"]);
     Route::put("/estadistica/update", [EstadisticaController::class, "update"]);
-    Route::get("/users/estadistica/{user_id}", [UserController::class, "getUserStadistics"]);
 
 });

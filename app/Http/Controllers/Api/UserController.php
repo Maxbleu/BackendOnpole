@@ -5,12 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EstadisticaResource;
 use App\Http\Resources\SesionResource;
-use App\Http\Resources\UserResource;
+use App\Models\Sesion;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
@@ -40,6 +37,32 @@ class UserController extends Controller
 
         $ultimaSesion = $userSesiones[count($userSesiones)-1];
         return new SesionResource($ultimaSesion);
+    }
+
+    public function getAnalyzedLapsMonthlyByUser($user_id){
+
+        $vueltasAnalizadasPorMes = [
+            ["nombre" => "Enero", "vueltasTotales" => 0],
+            ["nombre" => "Febrero", "vueltasTotales" => 0],
+            ["nombre" => "Marzo", "vueltasTotales" => 0],
+            ["nombre" => "Abril", "vueltasTotales" => 0],
+            ["nombre" => "Mayo", "vueltasTotales" => 0],
+            ["nombre" => "Junio", "vueltasTotales" => 0],
+            ["nombre" => "Julio", "vueltasTotales" => 0],
+            ["nombre" => "Agosto", "vueltasTotales" => 0],
+            ["nombre" => "Septiembre", "vueltasTotales" => 0],
+            ["nombre" => "Octubre", "vueltasTotales" => 0],
+            ["nombre" => "Noviembre", "vueltasTotales" => 0],
+            ["nombre" => "Diciembre", "vueltasTotales" => 0]
+        ];
+
+        $user = User::findOrFail($user_id);
+        foreach ($user->sesiones as $sesion) {
+            $vueltasAnalizadasPorMes[$sesion->created_at->month - 1]["vueltasTotales"] += count($sesion->vueltas);
+        }
+
+        return $vueltasAnalizadasPorMes;
+
     }
 
     public function update(Request $request) {
