@@ -42,18 +42,18 @@ class UserController extends Controller
     public function getAnalyzedLapsMonthlyByUser($user_id){
 
         $vueltasAnalizadasPorMes = [
-            ["nombre" => "Enero", "vueltasTotales" => 0],
-            ["nombre" => "Febrero", "vueltasTotales" => 0],
-            ["nombre" => "Marzo", "vueltasTotales" => 0],
-            ["nombre" => "Abril", "vueltasTotales" => 0],
-            ["nombre" => "Mayo", "vueltasTotales" => 0],
-            ["nombre" => "Junio", "vueltasTotales" => 0],
-            ["nombre" => "Julio", "vueltasTotales" => 0],
-            ["nombre" => "Agosto", "vueltasTotales" => 0],
-            ["nombre" => "Septiembre", "vueltasTotales" => 0],
-            ["nombre" => "Octubre", "vueltasTotales" => 0],
-            ["nombre" => "Noviembre", "vueltasTotales" => 0],
-            ["nombre" => "Diciembre", "vueltasTotales" => 0]
+            ["nombre" => "January", "vueltasTotales" => 0],
+            ["nombre" => "February", "vueltasTotales" => 0],
+            ["nombre" => "March", "vueltasTotales" => 0],
+            ["nombre" => "April", "vueltasTotales" => 0],
+            ["nombre" => "May", "vueltasTotales" => 0],
+            ["nombre" => "June", "vueltasTotales" => 0],
+            ["nombre" => "July", "vueltasTotales" => 0],
+            ["nombre" => "August", "vueltasTotales" => 0],
+            ["nombre" => "September", "vueltasTotales" => 0],
+            ["nombre" => "October", "vueltasTotales" => 0],
+            ["nombre" => "November", "vueltasTotales" => 0],
+            ["nombre" => "December", "vueltasTotales" => 0]
         ];
 
         $user = User::findOrFail($user_id);
