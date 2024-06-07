@@ -36,10 +36,10 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post("/user/logout", [AuthenticatedSessionController::class, "destroy"]);
     Route::post("/user/delete", [UserController::class, "destroy"]);
 
-    Route::get("/users/sesiones/{user_id}", [UserController::class, "getUserSesions"]);
-    Route::get("/users/sesiones/{user_id}/latest", [UserController::class, "getUserLatestSesion"]);
+    Route::get("/users/{user_id}/sesiones", [UserController::class, "getUserSesions"]);
+    Route::get("/users/{user_id}/sesiones/latest", [UserController::class, "getUserLatestSesion"]);
     Route::get("/users/{user_id}/sesiones/getLapsMonthly", [UserController::class, "getAnalyzedLapsMonthlyByUser"]);
-    Route::get("/users/estadistica/{user_id}", [UserController::class, "getUserStadistics"]);
+    Route::get("/users/{user_id}/estadistica", [UserController::class, "getUserStadistics"]);
 
     Route::get("/sesiones/{sesion_id}", [SesionController::class,"getSesionId"]);
     Route::post("/sesiones/insert", [SesionController::class, "store"]);
