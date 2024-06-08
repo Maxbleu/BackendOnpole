@@ -14,8 +14,7 @@ class EstadisticaController extends Controller
      * coleccion paginada de las 10 primeras
      * estadisticas de los usuarios con más
      * vueltas en la pagina y conforme el usuario
-     * solicite más datos se los proporcionará a
-     * través del método paginate
+     * solicite más
      */
     public function getGlobalRank() {
         $estadisticasSortedDesc = Estadistica::orderByDesc('number_total_laps')->paginate(10);
