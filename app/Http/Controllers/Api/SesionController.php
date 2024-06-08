@@ -41,6 +41,9 @@ class SesionController extends Controller
             "fecha" => $sesionObj["fecha"]
         ]);
 
+        $user = Auth::user();
+        $vueltas = $sesionObj["vueltas"];
+
         // Antes de insertar las vueltas de la nueva sesión, obtenemos la vuelta más rápida
         // de la combinación actual de la sesión.
 
@@ -57,8 +60,6 @@ class SesionController extends Controller
         ->orderBy("tiempo_vuelta", "asc")
         ->first();
 
-        $user = Auth::user();
-        $vueltas = $sesionObj["vueltas"];
         $listaVueltasSesionInsertadas = [];
 
         //  Recorremos todas las vueltas
