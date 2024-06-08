@@ -17,7 +17,7 @@ class EstadisticaController extends Controller
      * solicite más
      */
     public function getGlobalRank() {
-        $estadisticasSortedDesc = Estadistica::orderByDesc('number_total_laps');
+        $estadisticasSortedDesc = Estadistica::orderByDesc('number_total_laps')->get();
         return EstadisticaResource::collection($estadisticasSortedDesc);
     }
 

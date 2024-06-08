@@ -22,5 +22,13 @@ class UsersTableSeeder extends Seeder
             'acronimo' => "adm",
             "pais" => "es"
         ]);
+
+        User::create([
+            'name' => 'gemma',
+            'email' => "gemma@gmail.com",
+            'password' => "gemmaOnpole",
+            'acronimo' => "GEM",
+            "pais" => "es"
+        ]);
     }
 }
