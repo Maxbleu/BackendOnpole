@@ -33,7 +33,7 @@ class VueltaController extends Controller
                 ->on('vueltas.tiempo_vuelta', '=', 'vueltas_minimas.tiempo_vuelta_minimo');
         })
         ->orderBy('tiempo_vuelta', 'asc')
-        ->paginate(2);
+        ->paginate(10);
 
         // Devolvemos la colección de sesiones ya paginada
         return VueltaResource::collection($vueltasMasRapidasUsuariosEnCombinacion);
