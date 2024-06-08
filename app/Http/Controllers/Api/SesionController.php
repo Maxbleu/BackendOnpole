@@ -29,6 +29,9 @@ class SesionController extends Controller
      */
     public function store(Request $request){
 
+        //  Obtenemos el usuario
+        $user = Auth::user();
+
         $sesionObj = $request->json;
 
         //  Insertamos la sesion en la base de datos
@@ -41,18 +44,17 @@ class SesionController extends Controller
             "fecha" => $sesionObj["fecha"]
         ]);
 
-        $user = Auth::user();
         $vueltas = $sesionObj["vueltas"];
 
         // Antes de insertar las vueltas de la nueva sesión, obtenemos la vuelta más rápida
-        // de la combinación actual de la sesión.
+        // de la combinación;
 
         // ¡IMPORTANTE!
         // Realizamos este paso para asegurarnos de que, al comparar tiempos,
         // reconocemos correctamente el mejor tiempo actual antes de añadir nuevas vueltas.
-        // Esto es crítico porque si una de las nuevas vueltas supera el mejor tiempo existente,
+        // Ya que, si una de las nuevas vueltas supera el mejor tiempo existente,
         // debemos asegurarnos de actualizar correctamente nuestro registro del tiempo más rápido.
-        // De lo contrario, podríamos acabar reconociendo erróneamente una vuelta recién añadida
+        // Sino, podríamos acabar reconociendo erróneamente una vuelta recién añadida
         // como la más rápida sin considerar adecuadamente los tiempos anteriores.
 
         $vueltaMasRapidaCombinacion = Vuelta::where("coche_id", $sesion->coche_id)
