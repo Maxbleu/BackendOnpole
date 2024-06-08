@@ -31,7 +31,6 @@ Route::post("signup", [RegisteredUserController::class, "store"]);
 Route::get('csrf-token', function () {
     return response()->json(['csrfToken' => csrf_token()]);
 })->middleware("web");
-Route::get("/estadistica/global/{user_id?}", [EstadisticaController::class, "getGlobalRank"]);
 
 Route::middleware(['auth:sanctum'])->group(function(){
 
@@ -49,5 +48,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post("/sesiones/insert", [SesionController::class, "store"]);
 
     Route::get("/vueltas/combination/{circuito_id}/{coche_id}", [VueltaController::class, "getCombination"]);
+
+    Route::get("/estadistica/global/{user_id?}", [EstadisticaController::class, "getGlobalRank"]);
 
 });
