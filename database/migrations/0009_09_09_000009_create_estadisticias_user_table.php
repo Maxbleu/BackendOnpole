@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger("number_hot_laps")->default(0);
             $table->unsignedBigInteger("number_total_sesions")->default(0);
             $table->unsignedBigInteger("number_total_laps")->default(0);
-            $table->unsignedBigInteger("best_position_qualified")->default(0);
             $table->unsignedBigInteger("user_id")->unique();
             $table->timestamps();
         });

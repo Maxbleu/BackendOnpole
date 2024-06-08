@@ -14,7 +14,6 @@ class Vuelta extends Model
         "sector_1",
         "sector_2",
         "sector_3",
-        'track_limits',
         'numero_vuelta_sesion',
         "tiempo_vuelta",
         "sesion_id",

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer("sector_1");
             $table->integer("sector_2");
             $table->integer("sector_3");
-            $table->unsignedBigInteger("track_limits");
             $table->unsignedBigInteger("numero_vuelta_sesion");
             $table->integer("tiempo_vuelta");
             $table->unsignedBigInteger("coche_id");

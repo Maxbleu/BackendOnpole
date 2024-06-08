@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\Api\CircuitoController;
 use App\Http\Controllers\Api\EstadisticaController;
 use App\Http\Controllers\Api\MarcaController;
 use App\Http\Controllers\Api\SesionController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\VueltaController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Resources\CircuitoResource;
 use App\Http\Resources\CocheResource;
+use App\Models\Circuito;
 use App\Models\Coche;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +17,9 @@ Route::get("coches", function(){
     return CocheResource::collection(Coche::all());
 });
 
-Route::get("circuitos", [CircuitoController::class, "getAllCircuitos"]);
-Route::get("circuitos/{id}", [CircuitoController::class, "getCircuitoById"]);
+Route::get("circuitos", function(){
+    return CircuitoResource::collection(Circuito::all());
+});
 
 Route::get("marcas", [MarcaController::class, "getMarcas"]);
 Route::get("marcas/{id}", [MarcaController::class, "getMarcaById"]);
@@ -28,6 +31,8 @@ Route::post("signup", [RegisteredUserController::class, "store"]);
 Route::get('csrf-token', function () {
     return response()->json(['csrfToken' => csrf_token()]);
 })->middleware("web");
+
+Route::get("/vueltas/combination/{circuito_id}/{coche_id}", [VueltaController::class, "getCombination"]);
 
 Route::middleware(['auth:sanctum'])->group(function(){
 
@@ -43,7 +48,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
     Route::get("/sesiones/{sesion_id}", [SesionController::class,"getSesionId"]);
     Route::post("/sesiones/insert", [SesionController::class, "store"]);
-    Route::get("/sesiones/combination/{circuito_id}/{coche_id}", [SesionController::class, "getCombination"]);
 
     Route::get("/estadistica/global", [EstadisticaController::class, "getGlobalRank"]);
     Route::put("/estadistica/update", [EstadisticaController::class, "update"]);

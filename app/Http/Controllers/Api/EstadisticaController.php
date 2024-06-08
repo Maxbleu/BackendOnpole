@@ -5,20 +5,21 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EstadisticaResource;
 use App\Models\Estadistica;
-use Illuminate\Http\Request;
 
 class EstadisticaController extends Controller
 {
 
-    public function getGlobalRank(Request $request) {
-        $allEstadisticas = Estadistica::all();
-        $sortedEstadisticas = $allEstadisticas->sortByDesc('number_total_laps');
-        return EstadisticaResource::collection($sortedEstadisticas);
-    }
-
-
-    public function update(Request $request){
-
+    /**
+     * Este método se encarga de devolver una
+     * coleccion paginada de las 10 primeras
+     * estadisticas de los usuarios con más
+     * vueltas en la pagina y conforme el usuario
+     * solicite más datos se los proporcionará a
+     * través del método paginate
+     */
+    public function getGlobalRank() {
+        $estadisticasSortedDesc = Estadistica::orderByDesc('number_total_laps')->paginate(10);
+        return EstadisticaResource::collection($estadisticasSortedDesc);
     }
 
 }
