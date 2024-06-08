@@ -14,9 +14,6 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return array_merge(parent::toArray($request), [
-            'sesiones' => new SesionResource($this->sesiones),
-            'estadisticas' => new EstadisticaResource($this->estadistica)
-        ]);
+        return array_merge(parent::toArray($request));
     }
 }
