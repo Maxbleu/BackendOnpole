@@ -80,6 +80,7 @@ class SesionController extends Controller
                 "circuito_id" => $sesion->circuito_id,
                 "coche_id" => $sesion->coche_id,
                 "sesion_id" => $sesion->id,
+                "track_limits" => $vueltas[$iterador]["cuts"],
                 "user_id" => $user->id
             ]);
 

@@ -19,7 +19,8 @@ class Vuelta extends Model
         "sesion_id",
         "coche_id",
         "circuito_id",
-        "user_id"
+        "user_id",
+        "track_limits"
     ];
 
     public function sesion(): BelongsTo{
