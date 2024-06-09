@@ -1007,7 +1007,6 @@ class CochesTableSeeder extends Seeder
         [
             "nombre" => "R1",
             "nombreCocheJuego" => "ks_praga_r1",
-            "nombreCocheJuego" => "ks_porsche_962c_shorttail",
             "categoria" => "rccr",
             "marca_id" => 18
         ],
